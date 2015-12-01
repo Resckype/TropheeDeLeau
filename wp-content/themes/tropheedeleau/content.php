@@ -13,11 +13,17 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header>
-		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<?php foundationpress_entry_meta(); ?>
+		<h2><?php the_category(); ?></h2>
+		<?php
+			if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+			   the_post_thumbnail('accueil');
+			}
+		?>
+		<h1><?php the_title(); ?></h1>
 	</header>
 	<div class="entry-content">
-		<?php the_content( __( 'Continue reading...', 'foundationpress' ) ); ?>
+		<?php the_excerpt();?>
+		<a href="<?php the_permalink(); ?>" class="">Lire la suite</a>
 	</div>
 	<footer>
 		<?php $tag = get_the_tags(); if ( $tag ) { ?><p><?php the_tags(); ?></p><?php } ?>

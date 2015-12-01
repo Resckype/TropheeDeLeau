@@ -17,7 +17,13 @@
 					<?php do_action( 'foundationpress_before_pagination' ); ?>
 
 				<?php endif;?>
-                <ul class="pagination">
+                <?php if ( function_exists( 'foundationpress_pagination' ) ) { foundationpress_pagination(); } else if ( is_paged() ) { ?>
+            		<nav id="post-nav">
+            			<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'foundationpress' ) ); ?></div>
+            			<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'foundationpress' ) ); ?></div>
+            		</nav>
+            	<?php } ?>
+                <!-- <ul class="pagination">
                       <li class="arrow unavailable"><a href="">&laquo;</a></li>
                       <li class="current"><a href="">1</a></li>
                       <li><a href="">2</a></li>
@@ -27,7 +33,7 @@
                       <li><a href="">12</a></li>
                       <li><a href="">13</a></li>
                       <li class="arrow"><a href="">&raquo;</a></li>
-                </ul>
+                </ul> -->
             </section>
 
             <?php get_sidebar(); ?>
